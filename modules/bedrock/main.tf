@@ -1,6 +1,6 @@
-
+# AWSプロバイダーの設定
 provider "aws" {
-  region = "us-east-1"  # 使用するリージョンを指定
+  region = var.region  # 使用するリージョンを指定
 }
 
 # Lambda関数用のソースコードをアーカイブ
@@ -9,7 +9,6 @@ data "archive_file" "example_zip" {
   source_dir  = "${path.module}/lambda_function"
   output_path = "${path.module}/example_lambda.zip"
 }
-
 
 # Lambda関数の定義
 resource "aws_lambda_function" "example_lambda" {
